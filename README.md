@@ -6,4 +6,4 @@ The data is sourced from [Q4 2023 earnings data](https://ir.hilton.com/~/media/F
 
 The Dash visualisation is deployed to the following website using Render: [https://hilton-q423.onrender.com/](https://hilton-q423.onrender.com/).
 
-![newplot.png](https://hilton-q423.onrender.com/)
+![newplot.png](newplot.png)
