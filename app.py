@@ -26,9 +26,9 @@ app.layout = html.Div(children=[
         dcc.Dropdown(
             id='dropdown',
             options=[
-                {'label': 'adr - occupancy - rooms', 'value': 'graph1'},
-                {'label': 'rooms - occupancy - adr', 'value': 'graph2'},
-                {'label': 'adr - rooms - occupancy', 'value': 'graph3'},
+                {'label': 'adr (x) - occupancy (y) - rooms (z)', 'value': 'graph1'},
+                {'label': 'rooms (x) - occupancy (y) - adr (z)', 'value': 'graph2'},
+                {'label': 'adr (x) - rooms (y) - occupancy (z)', 'value': 'graph3'},
                     ],
             value='graph1',
             style={"width": "60%"}),
