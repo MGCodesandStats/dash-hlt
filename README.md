@@ -5,3 +5,5 @@ This is an interactive bubble chart that visualises hotel metrics across brands 
 The data is sourced from [Q4 2023 earnings data](https://ir.hilton.com/~/media/Files/H/Hilton-Worldwide-IR-V3/quarterly-results/2024/q4-2023-earnings-release.pdf) for Hilton Worldwide Holdings.
 
 The Dash visualisation is deployed to the following website using Render: [https://hilton-q423.onrender.com/](https://hilton-q423.onrender.com/).
+
+![newplot.png](newplot.png)
