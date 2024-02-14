@@ -18,17 +18,18 @@ df = pd.DataFrame(data=d)
 # Define dashboard layout
 app.layout = html.Div(children=[
     html.H1(children='Hilton Worldwide Holdings: Q4 2023 Earnings Results', style={'text-align': 'left'}),
-    html.H3(children='Data sourced from:', style={'text-align': 'left'}),
+    html.H4(children='Data sourced from:', style={'text-align': 'left'}),
     html.H4(children='https://ir.hilton.com/~/media/Files/H/Hilton-Worldwide-IR-V3/quarterly-results/2024/q4-2023-earnings-release.pdf', style={'text-align': 'left'}),
+    html.H4(children='x = x-axis, y = y-axis, z = bubble size', style={'text-align': 'left'}),
     
     html.Div([
-        html.Label(['Choose a graph:'],style={'font-weight': 'bold'}),
+        html.Label(['Graph selection:'],style={'font-weight': 'bold'}),
         dcc.Dropdown(
             id='dropdown',
             options=[
                 {'label': 'adr (x) - occupancy (y) - rooms (z)', 'value': 'graph1'},
-                {'label': 'rooms (x) - occupancy (y) - adr (z)', 'value': 'graph2'},
-                {'label': 'adr (x) - rooms (y) - occupancy (z)', 'value': 'graph3'},
+                {'label': 'occupancy (x) - adr (y) - rooms (z)', 'value': 'graph2'},
+                {'label': 'rooms (x) - occupancy (y) - adr (z)', 'value': 'graph3'},
                     ],
             value='graph1',
             style={"width": "60%"}),
@@ -48,10 +49,10 @@ def select_graph(value):
         fig = px.scatter(df, x="adr", y="occupancy", color="brand", size="rooms", size_max=45, log_x=True)
         return fig
     elif value == 'graph2':
-        fig1 = px.scatter(df, x="rooms", y="occupancy", color="brand", size="adr", size_max=45, log_x=True)
+        fig1 = px.scatter(df, x="occupancy", y="adr", color="brand", size="rooms", size_max=45, log_x=True)
         return fig1
     else:
-        fig2 = px.scatter(df, x="adr", y="rooms", color="brand", size="occupancy", size_max=45, log_x=True)
+        fig2 = px.scatter(df, x="rooms", y="occupancy", color="brand", size="adr", size_max=45, log_x=True)
         return fig2        
     
 if __name__ == '__main__':
