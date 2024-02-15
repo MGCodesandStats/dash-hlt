@@ -20,18 +20,37 @@ app.layout = html.Div(children=[
     html.H1(children='Hilton Worldwide Holdings: Q4 2023 Earnings Results', style={'text-align': 'left'}),
     html.H4(children='Data sourced from:', style={'text-align': 'left'}),
     html.H4(children='https://ir.hilton.com/~/media/Files/H/Hilton-Worldwide-IR-V3/quarterly-results/2024/q4-2023-earnings-release.pdf', style={'text-align': 'left'}),
-    html.H4(children='x = x-axis, y = y-axis, z = bubble size', style={'text-align': 'left'}),
     
     html.Div([
-        html.Label(['Graph selection:'],style={'font-weight': 'bold'}),
+        html.Label(['X'],style={'font-weight': 'bold'}),
         dcc.Dropdown(
-            id='dropdown',
+            id='x',
             options=[
-                {'label': 'adr (x) - occupancy (y) - rooms (z)', 'value': 'graph1'},
-                {'label': 'occupancy (x) - adr (y) - rooms (z)', 'value': 'graph2'},
-                {'label': 'rooms (x) - occupancy (y) - adr (z)', 'value': 'graph3'},
+                {'label': 'adr', 'value': 'adr'},
+                {'label': 'occupancy', 'value': 'occupancy'},
+                {'label': 'rooms', 'value': 'rooms'},
                     ],
-            value='graph1',
+            value='adr',
+            style={"width": "60%"}),
+        html.Label(['Y'],style={'font-weight': 'bold'}),
+        dcc.Dropdown(
+            id='y',
+            options=[
+                {'label': 'adr', 'value': 'adr'},
+                {'label': 'occupancy', 'value': 'occupancy'},
+                {'label': 'rooms', 'value': 'rooms'},
+                    ],
+            value='adr',
+            style={"width": "60%"}),
+        html.Label(['Z (bubble size)'],style={'font-weight': 'bold'}),
+        dcc.Dropdown(
+            id='z',
+            options=[
+                {'label': 'adr', 'value': 'adr'},
+                {'label': 'occupancy', 'value': 'occupancy'},
+                {'label': 'rooms', 'value': 'rooms'},
+                    ],
+            value='adr',
             style={"width": "60%"}),
         
     html.Div(dcc.Graph(id='graph')),        
@@ -41,20 +60,15 @@ app.layout = html.Div(children=[
 
 # Define callback
 @app.callback(
-    Output('graph', 'figure'),
-    [Input(component_id='dropdown', component_property='value')]
+    dash.dependencies.Output('graph', 'figure'),
+    [dash.dependencies.Input('x', 'value'),
+     dash.dependencies.Input('y', 'value'),
+     dash.dependencies.Input('z', 'value')]
 )
-def select_graph(value):
-    if value == 'graph1':
-        fig = px.scatter(df, x="adr", y="occupancy", color="brand", size="rooms", size_max=45, log_x=True)
-        return fig
-    elif value == 'graph2':
-        fig1 = px.scatter(df, x="occupancy", y="adr", color="brand", size="rooms", size_max=45, log_x=True)
-        return fig1
-    else:
-        fig2 = px.scatter(df, x="rooms", y="occupancy", color="brand", size="adr", size_max=45, log_x=True)
-        return fig2        
-    
+def select_graph(x, y, z):
+        fig = px.scatter(df, x=x, y=y, color="brand", size=z, size_max=45, log_x=True)
+        return fig        
+
 if __name__ == '__main__':
     app.run_server(debug=True)
 
