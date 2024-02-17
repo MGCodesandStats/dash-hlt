@@ -17,9 +17,13 @@ df = pd.DataFrame(data=d)
 
 # Define dashboard layout
 app.layout = html.Div(children=[
-    html.H1(children='Hilton Worldwide Holdings: Q4 2023 Earnings Results', style={'text-align': 'left'}),
+    html.H1(children='Hilton Worldwide Holdings: ADR, Occupancy and Rooms By Hotel Brand', style={'text-align': 'left'}),
+    html.H4(children='', style={'text-align': 'left'}),
+    html.H4(children='This interactive bubble chart visualisation displays ADR (average daily rate), occupancy, and number of rooms by hotel brand for Hilton Worldwide Holdings based on Q4 2023 earnings data.', style={'text-align': 'left'}),
+    html.H4(children='', style={'text-align': 'left'}),
     html.H4(children='Data sourced from:', style={'text-align': 'left'}),
-    html.H4(children='https://ir.hilton.com/~/media/Files/H/Hilton-Worldwide-IR-V3/quarterly-results/2024/q4-2023-earnings-release.pdf', style={'text-align': 'left'}),
+    html.A(children='Hilton Worldwide Holdings: Q4 2023 Earnings Results', href='https://ir.hilton.com/~/media/Files/H/Hilton-Worldwide-IR-V3/quarterly-results/2024/q4-2023-earnings-release.pdf', style={'text-align': 'left'}),
+    html.H4(children='', style={'text-align': 'left'}),
     
     html.Div([
         html.Label(['X'],style={'font-weight': 'bold'}),
@@ -76,4 +80,5 @@ if __name__ == '__main__':
 
 # Deploying a Dash Application on Render: https://github.com/thusharabandara/dash-app-render-deployment
 # Hilton Worldwide Holdings (Q4 2023 Earnings): https://ir.hilton.com/~/media/Files/H/Hilton-Worldwide-IR-V3/quarterly-results/2024/q4-2023-earnings-release.pdf
+# Plotly - Link to an external site in a new browser tab: https://community.plotly.com/t/link-to-an-external-site-in-a-new-browser-tab/7249/2
 # Stack Overflow - Connecting graphs with dropdown (Plotly Dash) - https://stackoverflow.com/questions/67401292/connecting-graphs-with-dropdown-plotly-dash
